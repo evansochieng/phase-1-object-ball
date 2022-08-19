@@ -212,7 +212,7 @@ function playerStats(playerName){
 
 // Function 7 - bigShoeRebounds()
 function bigShoeRebounds(){
-    let gameInfo = gameObject()
+    let gameInfo = gameObject();
 
     let rebounds; //initialize a variable to store rebounds
     let playerName; // initialize a variable for player name
@@ -238,9 +238,159 @@ function bigShoeRebounds(){
 
         
     }
+    console.log(`Player with largest shoe size is: ${playerName}.`);
+    console.log(`His shoe size is ${shoeSize}.`);
+    console.log(`His rebounds: ${rebounds}`); 
     return rebounds; // return rebounds for player with the largest shoe size
 };
 
 
 /////////////// BONUS QUESTIONS ////////////////
+// Function 8 - mostPointsScored()
+// Which player has the most points? 
+function mostPointsScored(){
+    let gameInfo = gameObject();
 
+    let mostPoints = 0; //initialize a variable to store most points
+    let playerName; // initialize a variable for player name
+
+    for (let team in gameInfo){ //loop over team names
+        let players = gameInfo[team].players; //get the object with player stats
+
+        // Loop over every player and access his stats
+        for (let player in players){
+            let playerInfo = players[player];
+            // check if the player's points is > current highest points
+            if (playerInfo.points > mostPoints) { 
+                mostPoints = playerInfo.points; // update highest points
+                playerName = player; // update player name
+                //console.log(playerName);
+                //console.log(mostPoints;
+            }
+                
+        }
+
+        
+    } 
+    console.log(`Player with the most points is: ${playerName}.`) ;
+    console.log(`Most Points: ${mostPoints}`);
+    return playerName;
+};
+
+// Function 9 - winningTeam()
+// Which team has the most points?
+function winningTeam(){
+    let gameInfo = gameObject();
+
+    let totalPoints = 0; //initialize a variable to store total points
+    let teamName; // initialize a variable for team name
+
+    for (let team in gameInfo){ //loop over team names
+        let players = gameInfo[team].players; //get the object with player stats
+
+        //Initialize a variable to score team points
+        let teamPoints = 0;
+
+        // Loop over every player and access his stats
+        for (let player in players){
+            let playerInfo = players[player];
+
+            // Add up team points
+            teamPoints += playerInfo.points;  
+        }
+        // Check if a team points is higher
+        if (teamPoints > totalPoints){
+            totalPoints = teamPoints;
+            teamName = team;
+        }
+        
+    } 
+    console.log(`Total points scored by the winning team is: ${totalPoints} points.`);
+    console.log(`The winning team is: ${teamName}`);
+    return teamName;
+};
+
+// Function 10 - playerWithLongestName()
+// Which player has the longest name?
+function playerWithLongestName(){
+    let gameInfo = gameObject();
+
+    let nameLength = 0; //initialize a variable the length of name
+    let playerName; // initialize a variable for player with the longest name
+
+    for (let team in gameInfo){ //loop over team names
+        let players = gameInfo[team].players; //get the object with player stats
+
+        // Loop over every player and access his stats
+        for (let player in players){
+            // check if the player's name is > current name length
+            if (player.length > nameLength) { 
+                nameLength = player.length; // update name length
+                playerName = player; // update player name
+                //console.log(playerName);
+                //console.log(nameLength;
+            }
+                
+        }
+
+        
+    }
+    console.log(`Longest name length: ${nameLength}`);
+    console.log(`Player with longest name: ${playerName}`);
+    return playerName;
+}
+
+
+/////////////// SUPER BONUS /////////////////////
+// Funtion 11 - doesLongNameStealATon()
+// Write a function that returns true if the player with the longest 
+// name had the most steals.
+
+// First write a function that will return player with most steals
+function mostStealsWon(){
+    let gameInfo = gameObject();
+
+    let mostSteals = 0; //initialize a variable to store most steals
+    let playerName; // initialize a variable for player name
+
+    for (let team in gameInfo){ //loop over team names
+        let players = gameInfo[team].players; //get the object with player stats
+
+        // Loop over every player and access his stats
+        for (let player in players){
+            let playerInfo = players[player];
+            // check if the player's steals is > current highest steals
+            if (playerInfo.steals > mostSteals) { 
+                mostSteals = playerInfo.steals; // update highest steals
+                playerName = player; // update player name
+                //console.log(playerName);
+                //console.log(mostSteals;
+            }
+                
+        }
+
+        
+    } 
+    console.log(`Player with the most steals is: ${playerName}.`) ;
+    console.log(`Most Steals: ${mostSteals}`);
+    return playerName;
+};
+
+// Now write the function that will return true if the player with the 
+// longest name is the same player who has the most number of steals
+// I will call two functions within this function
+// (i) playerWithLongestName()
+// (ii) mostStealsWon()
+
+function doesLongNameStealATon(){
+    let playerWithLongName = playerWithLongestName(); // declare variable for Daddy Long Name
+    let playerWithMostSteals = mostStealsWon(); // declare variable for player with most steals
+
+    // Check if the two player names are the same (equal)
+    // Return that value
+    return playerWithLongName === playerWithMostSteals;
+};
+
+// VOILA BUOY!!!!!!!!!!!!
+// TRY AND FAIL, BUT DON'T FAIL TO TRY!
+// STORMS DON'T LAST FOREVER!
